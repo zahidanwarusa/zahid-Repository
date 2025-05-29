@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare E2E Manual Testing - Complete Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .section-border-blue { border-left: 4px solid #3b82f6; }
+        .section-border-green { border-left: 4px solid #10b981; }
+        .section-border-purple { border-left: 4px solid #8b5cf6; }
+        .section-border-red { border-left: 4px solid #ef4444; }
+        .section-border-yellow { border-left: 4px solid #f59e0b; }
+        .section-border-indigo { border-left: 4px solid #6366f1; }
+        .section-border-pink { border-left: 4px solid #ec4899; }
+        .section-border-orange { border-left: 4px solid #f97316; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold mb-2">Healthcare E2E Manual Testing</h1>
+            <p class="text-blue-100">Complete Guide: Phases, Procedures & Healthcare-Specific Requirements</p>
+        </div>
+    </div>
+
+    <!-- Search and Controls -->
+    <div class="max-w-6xl mx-auto px-4 py-6">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex flex-col md:flex-row gap-4 items-center">
+                <div class="flex-1 relative">
+                    <input type="text" id="searchBox" placeholder="Search for topics, phases, procedures..." 
+                           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="expandAll()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 text-sm">
+                        Expand All
+                    </button>
+                    <button onclick="collapseAll()" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 text-sm">
+                        Collapse All
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase Navigation -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 mb-6">
+            <button onclick="scrollToSection('planning')" class="bg-blue-100 text-blue-800 px-3 py-2 rounded text-xs hover:bg-blue-200">Planning</button>
+            <button onclick="scrollToSection('design')" class="bg-green-100 text-green-800 px-3 py-2 rounded text-xs hover:bg-green-200">Design</button>
+            <button onclick="scrollToSection('execution')" class="bg-purple-100 text-purple-800 px-3 py-2 rounded text-xs hover:bg-purple-200">Execution</button>
+            <button onclick="scrollToSection('scenarios')" class="bg-red-100 text-red-800 px-3 py-2 rounded text-xs hover:bg-red-200">Scenarios</button>
+            <button onclick="scrollToSection('documentation')" class="bg-yellow-100 text-yellow-800 px-3 py-2 rounded text-xs hover:bg-yellow-200">Documentation</button>
+            <button onclick="scrollToSection('compliance')" class="bg-indigo-100 text-indigo-800 px-3 py-2 rounded text-xs hover:bg-indigo-200">Compliance</button>
+            <button onclick="scrollToSection('tools')" class="bg-pink-100 text-pink-800 px-3 py-2 rounded text-xs hover:bg-pink-200">Tools</button>
+            <button onclick="scrollToSection('reporting')" class="bg-orange-100 text-orange-800 px-3 py-2 rounded text-xs hover:bg-orange-200">Reporting</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="space-y-6">
+
+            <!-- Phase 1: Planning -->
+            <div class="section-wrapper" data-section="planning">
+                <div class="bg-white rounded-lg shadow-sm section-border-blue">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('planning')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <span class="text-blue-600 font-bold text-sm">1</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Planning Phase</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Requirements Analysis -->
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-3">Requirements Analysis</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Gather functional requirements from stakeholders</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Identify non-functional requirements (performance, security)</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Understand clinical workflows and user personas</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Map integration points with existing systems</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Identify regulatory and compliance requirements</li>
+                                </ul>
+                            </div>
+
+                            <!-- Test Strategy -->
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-3">Test Strategy Development</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Define testing scope and objectives</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Determine test levels (unit, integration, system, E2E)</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Identify test types (functional, security, usability)</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Plan risk-based testing approach</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Define entry/exit criteria for each phase</li>
+                                </ul>
+                            </div>
+
+                            <!-- Resource Planning -->
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-3">Resource & Environment Planning</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Estimate testing effort and timeline</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Allocate team members with domain expertise</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Set up test environments (DEV, QA, UAT, PROD-like)</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Plan test data management strategy</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Coordinate with clinical SMEs and end users</li>
+                                </ul>
+                            </div>
+
+                            <!-- Healthcare Specific Planning -->
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-3">Healthcare-Specific Planning</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Plan PHI de-identification strategies</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Coordinate with clinical workflow experts</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Plan for medical device integrations</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Schedule clinical user acceptance testing</li>
+                                    <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Plan regulatory documentation requirements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2: Test Design -->
+            <div class="section-wrapper" data-section="design">
+                <div class="bg-white rounded-lg shadow-sm section-border-green">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('design')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <span class="text-green-600 font-bold text-sm">2</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Test Design Phase</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Test Case Design -->
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-3">Test Case Design</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Create detailed test cases with preconditions</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Define test steps in logical sequence</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Specify expected results for each step</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Include post-conditions and cleanup steps</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Map test cases to requirements (traceability)</li>
+                                </ul>
+                            </div>
+
+                            <!-- Test Data Design -->
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-3">Test Data Design</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Create synthetic patient data sets</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Design boundary value test data</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Prepare invalid/negative test data</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Ensure HIPAA compliance in test data</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Create data for various clinical scenarios</li>
+                                </ul>
+                            </div>
+
+                            <!-- User Journey Mapping -->
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-3">User Journey Mapping</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Map complete patient care workflows</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Design provider workflow scenarios</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Create administrative user journeys</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Design cross-system integration flows</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Include exception and error handling paths</li>
+                                </ul>
+                            </div>
+
+                            <!-- Healthcare Scenarios Design -->
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-3">Healthcare Scenarios Design</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Emergency department workflow scenarios</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Inpatient admission and discharge flows</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Outpatient clinic visit scenarios</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Medication management workflows</li>
+                                    <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Lab and radiology order/result flows</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3: Test Execution -->
+            <div class="section-wrapper" data-section="execution">
+                <div class="bg-white rounded-lg shadow-sm section-border-purple">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('execution')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <span class="text-purple-600 font-bold text-sm">3</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Test Execution Phase</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Pre-Execution Setup -->
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-purple-800 mb-3">Pre-Execution Setup</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Verify test environment readiness</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Load and validate test data</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Confirm system integrations are working</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Set up user accounts and permissions</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Verify security and compliance settings</li>
+                                </ul>
+                            </div>
+
+                            <!-- Manual Testing Execution -->
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-purple-800 mb-3">Manual Testing Execution</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Execute test cases step by step</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Document actual results vs expected results</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Capture screenshots for evidence</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Record execution time and effort</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Note any deviations or observations</li>
+                                </ul>
+                            </div>
+
+                            <!-- Defect Management -->
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-purple-800 mb-3">Defect Management</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Log defects with detailed descriptions</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Assign severity and priority levels</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Include steps to reproduce</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Attach evidence (screenshots, logs)</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Track defect lifecycle and resolution</li>
+                                </ul>
+                            </div>
+
+                            <!-- Healthcare Execution Specifics -->
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-purple-800 mb-3">Healthcare Execution Specifics</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Validate clinical decision support alerts</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Test medication interaction warnings</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Verify patient safety mechanisms</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Test data privacy and access controls</li>
+                                    <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Validate audit trail generation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Healthcare Test Scenarios -->
+            <div class="section-wrapper" data-section="scenarios">
+                <div class="bg-white rounded-lg shadow-sm section-border-red">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('scenarios')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                    <span class="text-red-600 font-bold text-sm">4</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Healthcare Test Scenarios</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="space-y-6">
+                            <!-- Patient Management Scenarios -->
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-red-800 mb-3">Patient Management Scenarios</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h4 class="font-medium text-red-700 mb-2">Registration & Scheduling</h4>
+                                        <ul class="space-y-1 text-sm text-red-600">
+                                            <li>• New patient registration with insurance verification</li>
+                                            <li>• Appointment scheduling across multiple providers</li>
+                                            <li>• Patient portal account creation and activation</li>
+                                            <li>• Insurance eligibility and benefits verification</li>
+                                            <li>• Emergency contact and guarantor setup</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-red-700 mb-2">Check-in & Demographics</h4>
+                                        <ul class="space-y-1 text-sm text-red-600">
+                                            <li>• Patient check-in with ID verification</li>
+                                            <li>• Insurance card scanning and validation</li>
+                                            <li>• Demographic updates and confirmation</li>
+                                            <li>• Co-pay collection and processing</li>
+                                            <li>• Consent form management</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Clinical Workflow Scenarios -->
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-red-800 mb-3">Clinical Workflow Scenarios</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <h4 class="font-medium text-red-700 mb-2">Documentation</h4>
+                                        <ul class="space-y-1 text-sm text-red-600">
+                                            <li>• SOAP note creation and templates</li>
+                                            <li>• Chief complaint documentation</li>
+                                            <li>• History of present illness</li>
+                                            <li>• Physical examination findings</li>
+                                            <li>• Assessment and plan documentation</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-red-700 mb-2">Orders & Results</h4>
+                                        <ul class="space-y-1 text-sm text-red-600">
+                                            <li>• Laboratory order placement</li>
+                                            <li>• Radiology order with clinical indication</li>
+                                            <li>• Prescription writing and e-prescribing</li>
+                                            <li>• Result review and acknowledgment</li>
+                                            <li>• Critical value alerts and notifications</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-red-700 mb-2">Decision Support</h4>
+                                        <ul class="space-y-1 text-sm text-red-600">
+                                            <li>• Drug-drug interaction alerts</li>
+                                            <li>• Allergy contraindication warnings</li>
+                                            <li>• Clinical guideline reminders</li>
+                                            <li>• Preventive care recommendations</li>
+                                            <li>• Duplicate order warnings</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Integration Testing Scenarios -->
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-red-800 mb-3">Integration Testing Scenarios</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h4 class="font-medium text-red-700 mb-2">System-to-System</h4>
+                                        <ul class="space-y-1 text-sm text-red-600">
+                                            <li>• EHR to Lab Information System (LIS)</li>
+                                            <li>• EHR to Radiology Information System (RIS)</li>
+                                            <li>• EHR to Pharmacy Management System</li>
+                                            <li>• EHR to Hospital Information System (HIS)</li>
+                                            <li>• Health Information Exchange (HIE) connectivity</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-red-700 mb-2">Data Exchange</h4>
+                                        <ul class="space-y-1 text-sm text-red-600">
+                                            <li>• HL7 message processing and validation</li>
+                                            <li>• FHIR resource exchange testing</li>
+                                            <li>• DICOM image transfer and viewing</li>
+                                            <li>• CCD/CDA document generation</li>
+                                            <li>• Real-time data synchronization</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentation Phase -->
+            <div class="section-wrapper" data-section="documentation">
+                <div class="bg-white rounded-lg shadow-sm section-border-yellow">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('documentation')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                    <span class="text-yellow-600 font-bold text-sm">5</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Documentation & Evidence</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Test Documentation -->
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-yellow-800 mb-3">Test Documentation</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Test Plan with scope and approach</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Test Cases with detailed steps</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Test Execution Reports</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Defect Reports and Resolution</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Traceability Matrix (Requirements to Tests)</li>
+                                </ul>
+                            </div>
+
+                            <!-- Evidence Collection -->
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-yellow-800 mb-3">Evidence Collection</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Screenshots of test execution</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>System logs and error messages</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Database state before/after testing</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Network traffic captures (if applicable)</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Performance metrics and timing</li>
+                                </ul>
+                            </div>
+
+                            <!-- Regulatory Documentation -->
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-yellow-800 mb-3">Regulatory Documentation</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Validation protocols and reports</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Risk assessment documentation</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Security testing evidence</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Audit trail verification reports</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>User acceptance testing sign-offs</li>
+                                </ul>
+                            </div>
+
+                            <!-- Quality Metrics -->
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-yellow-800 mb-3">Quality Metrics</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Test coverage percentage</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Defect density and distribution</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Test execution progress tracking</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Pass/fail rates by module</li>
+                                    <li class="flex items-start"><span class="text-yellow-600 mr-2">•</span>Testing effort and productivity metrics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance & Regulatory -->
+            <div class="section-wrapper" data-section="compliance">
+                <div class="bg-white rounded-lg shadow-sm section-border-indigo">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('compliance')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                                    <span class="text-indigo-600 font-bold text-sm">6</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Compliance & Regulatory Testing</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- HIPAA Compliance -->
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-indigo-800 mb-3">HIPAA Compliance Testing</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>PHI access control verification</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Data encryption at rest and in transit</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Audit log generation and integrity</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>User authentication and authorization</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Minimum necessary rule implementation</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Breach detection and notification</li>
+                                </ul>
+                            </div>
+
+                            <!-- FDA Validation -->
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-indigo-800 mb-3">FDA Validation (21 CFR Part 11)</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Electronic signature implementation</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Electronic record integrity</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>System access controls</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Audit trail completeness</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>System validation documentation</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Change control procedures</li>
+                                </ul>
+                            </div>
+
+                            <!-- Security Testing -->
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-indigo-800 mb-3">Security Testing</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Penetration testing scenarios</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Vulnerability assessment</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>SQL injection testing</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Cross-site scripting (XSS) testing</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Session management validation</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>Network security testing</li>
+                                </ul>
+                            </div>
+
+                            <!-- Interoperability Standards -->
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-indigo-800 mb-3">Interoperability Standards</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>HL7 message validation</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>FHIR resource compliance</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>DICOM conformance testing</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>IHE profile compliance</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>CCD/CDA document validation</li>
+                                    <li class="flex items-start"><span class="text-indigo-600 mr-2">•</span>X12 EDI transaction testing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Techniques -->
+            <div class="section-wrapper" data-section="tools">
+                <div class="bg-white rounded-lg shadow-sm section-border-pink">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('tools')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                                    <span class="text-pink-600 font-bold text-sm">7</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Manual Testing Tools & Techniques</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Test Management Tools -->
+                            <div class="bg-pink-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-pink-800 mb-3">Test Management Tools</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>JIRA/Azure DevOps for test case management</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>TestRail for test execution tracking</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>qTest for comprehensive test management</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Zephyr for Jira integration</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Excel/Google Sheets for simple tracking</li>
+                                </ul>
+                            </div>
+
+                            <!-- Documentation Tools -->
+                            <div class="bg-pink-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-pink-800 mb-3">Documentation Tools</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Confluence for test documentation</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>SharePoint for document management</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Snagit/Greenshot for screenshots</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Camtasia for video recording</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Lucidchart for workflow diagrams</li>
+                                </ul>
+                            </div>
+
+                            <!-- Healthcare-Specific Tools -->
+                            <div class="bg-pink-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-pink-800 mb-3">Healthcare-Specific Tools</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>HL7 Spy for message analysis</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>HAPI FHIR tools for validation</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>DICOM viewers for image testing</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Mirth Connect for integration testing</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Postman for API testing</li>
+                                </ul>
+                            </div>
+
+                            <!-- Testing Techniques -->
+                            <div class="bg-pink-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-pink-800 mb-3">Manual Testing Techniques</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Exploratory testing for usability</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Boundary value analysis</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Equivalence class partitioning</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Error guessing and negative testing</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>State transition testing</li>
+                                    <li class="flex items-start"><span class="text-pink-600 mr-2">•</span>Decision table testing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reporting Phase -->
+            <div class="section-wrapper" data-section="reporting">
+                <div class="bg-white rounded-lg shadow-sm section-border-orange">
+                    <button class="section-header w-full p-4 text-left hover:bg-gray-50 transition-colors" onclick="toggleSection('reporting')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                                    <span class="text-orange-600 font-bold text-sm">8</span>
+                                </div>
+                                <h2 class="text-xl font-semibold text-gray-800">Reporting & Closure</h2>
+                            </div>
+                            <svg class="section-chevron w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    
+                    <div class="section-content hidden p-4 pt-0 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Test Summary Report -->
+                            <div class="bg-orange-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-orange-800 mb-3">Test Summary Report</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Executive summary with key findings</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Test coverage analysis</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Defect summary and trends</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Risk assessment and mitigation</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Recommendations for improvement</li>
+                                </ul>
+                            </div>
+
+                            <!-- Metrics & KPIs -->
+                            <div class="bg-orange-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-orange-800 mb-3">Key Metrics & KPIs</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Test execution completion rate</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Defect detection efficiency</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Requirements coverage percentage</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Test case pass/fail ratio</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Testing effort vs planned</li>
+                                </ul>
+                            </div>
+
+                            <!-- Go-Live Readiness -->
+                            <div class="bg-orange-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-orange-800 mb-3">Go-Live Readiness Assessment</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Critical defect resolution status</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>User acceptance testing sign-off</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Performance benchmarks met</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Security testing completion</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Regulatory compliance verification</li>
+                                </ul>
+                            </div>
+
+                            <!-- Lessons Learned -->
+                            <div class="bg-orange-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-orange-800 mb-3">Lessons Learned & Improvements</h3>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Process improvement opportunities</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Test approach effectiveness analysis</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Resource utilization review</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Knowledge transfer documentation</li>
+                                    <li class="flex items-start"><span class="text-orange-600 mr-2">•</span>Future testing recommendations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Reference Cards -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Quick Reference Cards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-blue-800 mb-2">Key Healthcare Standards</h3>
+                    <div class="text-sm text-blue-600 space-y-1">
+                        <div>• HL7 v2.x, FHIR R4</div>
+                        <div>• DICOM 3.0</div>
+                        <div>• ICD-10, CPT, SNOMED CT</div>
+                        <div>• X12 EDI (837, 835, 834)</div>
+                        <div>• IHE Profiles</div>
+                    </div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-green-800 mb-2">Compliance Checklist</h3>
+                    <div class="text-sm text-green-600 space-y-1">
+                        <div>• HIPAA Privacy & Security</div>
+                        <div>• FDA 21 CFR Part 11</div>
+                        <div>• HITECH Act</div>
+                        <div>• SOX (if applicable)</div>
+                        <div>• State regulations</div>
+                    </div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-purple-800 mb-2">Critical Test Areas</h3>
+                    <div class="text-sm text-purple-600 space-y-1">
+                        <div>• Patient safety mechanisms</div>
+                        <div>• Data integrity & accuracy</div>
+                        <div>• System integrations</div>
+                        <div>• Security & access controls</div>
+                        <div>• Audit trail generation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const sections = document.querySelectorAll('.section-wrapper');
+            
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (searchTerm === '' || text.includes(searchTerm)) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Section toggle functionality
+        function toggleSection(sectionId) {
+            const section = document.querySelector(`[data-section="${sectionId}"]`);
+            const content = section.querySelector('.section-content');
+            const chevron = section.querySelector('.section-chevron');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                chevron.style.transform = 'rotate(90deg)';
+            } else {
+                content.classList.add('hidden');
+                chevron.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Expand all sections
+        function expandAll() {
+            const sections = document.querySelectorAll('.section-content');
+            const chevrons = document.querySelectorAll('.section-chevron');
+            
+            sections.forEach(section => {
+                section.classList.remove('hidden');
+            });
+            
+            chevrons.forEach(chevron => {
+                chevron.style.transform = 'rotate(90deg)';
+            });
+        }
+
+        // Collapse all sections
+        function collapseAll() {
+            const sections = document.querySelectorAll('.section-content');
+            const chevrons = document.querySelectorAll('.section-chevron');
+            
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            chevrons.forEach(chevron => {
+                chevron.style.transform = 'rotate(0deg)';
+            });
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.querySelector(`[data-section="${sectionId}"]`);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Auto-expand the section
+                const content = section.querySelector('.section-content');
+                const chevron = section.querySelector('.section-chevron');
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    chevron.style.transform = 'rotate(90deg)';
+                }
+            }
+        }
+
+        // Auto-expand first section on load
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleSection('planning');
+        });
+    </script>
+</body>
+</html>
